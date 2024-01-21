@@ -74,6 +74,7 @@ def analyse_frame(frame: Frame) -> bool:
     return False
 
 
+
 @lru_cache(maxsize = None)
 def analyse_image(image_path : str) -> bool:
 	frame = read_image(image_path)
