@@ -69,14 +69,8 @@ def analyse_stream(vision_frame : VisionFrame, video_fps : Fps) -> bool:
 	return False
 
 
-def analyse_frame(vision_frame : VisionFrame) -> bool:
-	content_analyser = get_content_analyser()
-	vision_frame = prepare_frame(vision_frame)
-	probability = content_analyser.run(None,
-	{
-		content_analyser.get_inputs()[0].name: vision_frame
-	})[0][0][1]
-	return probability > PROBABILITY_LIMIT
+def analyse_frame(frame : Frame) -> bool:
+	return False
 
 
 def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
