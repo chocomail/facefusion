@@ -69,7 +69,7 @@ def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
 	return vision_frame
 
 
-def analyse_frame(frame : Frame) -> bool:
+def analyse_frame(frame : VisionFrame) -> bool:
 	return False
 	# content_analyser = get_content_analyser()
 	# frame = prepare_frame(frame)
