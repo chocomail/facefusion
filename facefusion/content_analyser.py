@@ -69,7 +69,7 @@ def analyse_stream(vision_frame : VisionFrame, video_fps : Fps) -> bool:
 	return False
 
 
-def analyse_frame(frame : Frame) -> bool:
+def analyse_frame(frame : VisionFrame) -> bool:
 	return False
 
 
