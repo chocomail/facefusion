@@ -9,7 +9,7 @@ from tqdm import tqdm
 import facefusion.globals
 from facefusion import wording
 from facefusion.typing import VisionFrame, ModelValue, Fps
-from facefusion.execution_helper import apply_execution_provider_options
+from facefusion.execution import apply_execution_provider_options
 from facefusion.vision import get_video_frame, count_video_frame_total, read_image, detect_video_fps
 from facefusion.filesystem import resolve_relative_path
 from facefusion.download import conditional_download
@@ -62,22 +62,22 @@ def analyse_stream(vision_frame : VisionFrame, video_fps : Fps) -> bool:
 	return False
 
 
+def analyse_frame(vision_frame : VisionFrame) -> bool:
+	return False
+	# content_analyser = get_content_analyser()
+	# vision_frame = prepare_frame(vision_frame)
+	# probability = content_analyser.run(None,
+	# {
+	# 	content_analyser.get_inputs()[0].name: vision_frame
+	# })[0][0][1]
+	# return probability > PROBABILITY_LIMIT
+
+
 def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
 	vision_frame = cv2.resize(vision_frame, (224, 224)).astype(numpy.float32)
 	vision_frame -= numpy.array([ 104, 117, 123 ]).astype(numpy.float32)
 	vision_frame = numpy.expand_dims(vision_frame, axis = 0)
 	return vision_frame
-
-
-def analyse_frame(frame : VisionFrame) -> bool:
-	return False
-	# content_analyser = get_content_analyser()
-	# frame = prepare_frame(frame)
-	# probability = content_analyser.run(None,
-	# {
-	# 	'input:0': frame
-	# })[0][0][1]
-	# return probability > PROBABILITY_LIMIT
 
 
 @lru_cache(maxsize = None)
